@@ -55,6 +55,8 @@ type RancherKubernetesEngineConfig struct {
 	RotateCertificates *RotateCertificates `yaml:"rotate_certificates,omitempty" json:"rotateCertificates,omitempty"`
 	// DNS Config
 	DNS *DNSConfig `yaml:"dns" json:"dns,omitempty"`
+	// RKE Client Config
+	RKEClient RKEClientConfig `yaml:"rke_client" json:"rkeClient,omitempty"`
 }
 
 type BastionHost struct {
@@ -763,6 +765,13 @@ type DNSConfig struct {
 	StubDomains map[string][]string `yaml:"stubdomains" json:"stubdomains,omitempty"`
 	// NodeSelector key pair
 	NodeSelector map[string]string `yaml:"node_selector" json:"nodeSelector,omitempty"`
+}
+
+type RKEClientConfig struct {
+	// Docker connect timeout
+	DockerDialerTimeoutSecond int `yaml:"docker_dialer_timeout_second" json:"dockerDialerTimeoutSecond,omitempty"`
+	// Retry times when reconcile host
+	ReconcileHostRetry int `yaml:"reconcile_host_retry" json:"reconcileHostRetry,omitempty"`
 }
 
 type RKETaint struct {
